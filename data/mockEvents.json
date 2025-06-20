@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Festival internacional de teatro",
+    "description": "Una noche increible con las mejores obras",
+    "category": "Teatro",
+    "date": "2025-07-10",
+    "location": "Teatro Municipal",
+    "totalTickets": 200,
+    "imageUrl": "https://th.bing.com/th/id/R.2f4e339032ec82564627ac88dec843fd?rik=ZCtV5mnkXgprXg&pid=ImgRaw&r=0",
+    "status": "activo"
+  },
+  {
+    "name": "Maneskin en concierto",
+    "description": "La banda italiana Maneskin llega a la ciudad",
+    "category": "Música",
+    "date": "2025-07-20",
+    "location": "Estadio Nacional Pascual Guerrero",
+    "totalTickets": 1000,
+    "imageUrl": "https://th.bing.com/th/id/OIP.GEwKkNJ6YI-g2jgTyAHj5QHaD5?r=0&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3",
+    "status": "activo"
+  }
+]
