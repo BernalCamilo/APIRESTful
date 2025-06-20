@@ -25,3 +25,20 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
+// PUT /events/:id - actualizar un evento existente
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const evento = await Event.findByPk(id);
+
+    if (!evento) {
+      return res.status(404).json({ error: 'Evento no encontrado' });
+    }
+
+    await evento.update(req.body);
+    res.json(evento);
+  } catch (error) {
+    console.error('Error al actualizar evento:', error);
+    res.status(400).json({ error: 'Error al actualizar el evento' });
+  }
+});

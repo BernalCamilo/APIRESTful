@@ -7,7 +7,7 @@ app.use(express.json());
 app.use('/events', eventRoutes); 
 
 app.get('/', (req, res) => {
-  res.send('API funcionando ✅');
+  res.send('API funcionando correctamente');
 });
 
 app.listen(3000, () => {
