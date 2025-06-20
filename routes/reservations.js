@@ -30,4 +30,23 @@ router.post('/', async (req, res) => {
   }
 });
 
+// GET /reservations - todas las reservas o filtradas por email
+router.get('/', async (req, res) => {
+  try {
+    const { email } = req.query;
+    const where = email ? { email } : {};
+
+    const reservas = await Reservation.findAll({ where });
+
+    if (reservas.length === 0) {
+      return res.status(404).json({ message: 'No se encontraron reservas' });
+    }
+
+    res.json(reservas);
+  } catch (error) {
+    console.error('Error al obtener reservas:', error);
+    res.status(500).json({ error: 'Error interno al obtener reservas' });
+  }
+});
+
 module.exports = router;
