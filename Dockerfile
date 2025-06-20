@@ -12,6 +12,6 @@ RUN npm install
 COPY . .
 
 # Comando para correr la app
-CMD ["npx", "nodemon", "app.js"]
 CMD ["npx", "sequelize-cli", "db:migrate"]
+
 
