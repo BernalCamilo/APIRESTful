@@ -42,3 +42,21 @@ router.put('/:id', async (req, res) => {
     res.status(400).json({ error: 'Error al actualizar el evento' });
   }
 });
+
+// DELETE /events/:id - cancelar (eliminar) un evento
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const evento = await Event.findByPk(id);
+
+    if (!evento) {
+      return res.status(404).json({ error: 'Evento no encontrado' });
+    }
+
+    await evento.destroy();
+    res.json({ message: 'Evento cancelado exitosamente' });
+  } catch (error) {
+    console.error('Error al cancelar evento:', error);
+    res.status(500).json({ error: 'Error al cancelar el evento' });
+  }
+});
