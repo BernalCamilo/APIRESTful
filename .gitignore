@@ -1,0 +1,16 @@
+# Node modules
+node_modules/
+
+# Dotenv environment variables
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Sequelize config (opcional si usas config.json y no quieres compartirlo)
+config/config.json
+
+# Docker volumes y otros
+pgdata/
