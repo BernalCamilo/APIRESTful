@@ -95,4 +95,24 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// DELETE /reservations/:id - cancelar una reserva
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const reserva = await Reservation.findByPk(id);
+    if (!reserva) {
+      return res.status(404).json({ error: 'Reserva no encontrada' });
+    }
+
+    await reserva.destroy();
+
+    res.json({ message: 'Reserva cancelada exitosamente' });
+  } catch (error) {
+    console.error('Error al cancelar reserva:', error);
+    res.status(500).json({ error: 'Error interno al cancelar la reserva' });
+  }
+});
+
+
 module.exports = router;
