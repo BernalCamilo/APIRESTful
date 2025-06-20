@@ -1,12 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const { Event } = require('../models');
+const { Event, Reservation } = require('../models');
+
 
 // GET /events - obtener todos los eventos
 router.get('/', async (req, res) => {
   try {
     const events = await Event.findAll();
-    res.json(events);
+
+    const eventsConDisponibles = await Promise.all(events.map(async (event) => {
+      const totalReservado = await Reservation.sum('quantity', {
+        where: { eventId: event.id }
+      });
+
+      const availableTickets = event.totalTickets - (totalReservado || 0);
+
+      return {
+        ...event.toJSON(),
+        availableTickets
+      };
+    }));
+
+    res.json(eventsConDisponibles);
   } catch (error) {
     console.error('Error al obtener eventos:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
